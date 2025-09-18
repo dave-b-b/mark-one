@@ -1,6 +1,6 @@
 {
-  "name": "onenote-markdown",
-  "version": "0.1.0",
+  "name": "one-mark",
+  "version": "0.0.1",
   "private": true,
   "dependencies": {
     "@webcomponents/webcomponentsjs": "^2.4.0",
