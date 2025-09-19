@@ -168,9 +168,8 @@ export const pageReducer = (
   produce(
     state,
     (draftState): StatePages => {
-      if (!action.hasOwnProperty("pageId")) {
-        return draftState;
-      } else if (!draftState.hasOwnProperty(action.pageId)) {
+      if (!Object.prototype.hasOwnProperty.call(action, "pageId")) {        return draftState;
+      } else if (!Object.hasOwnProperty.call(draftState, action.pageId)) {
         if (action.type === STORE_PAGE) {
           return handleStorePage(draftState, action as StorePageAction);
         } else {

@@ -32,7 +32,7 @@ export function createElement<K extends keyof HTMLElementTagNameMap>(
   if (style) {
     for (const key in style) {
       const value = style[key];
-      if (style.hasOwnProperty(key) && value !== undefined) {
+      if (Object.prototype.hasOwnProperty.call(style, key) && value !== undefined) {
         el.style.setProperty(paramCase(key), value);
       }
     }
@@ -41,7 +41,7 @@ export function createElement<K extends keyof HTMLElementTagNameMap>(
   if (props) {
     for (const key in props) {
       const value = props[key];
-      if (props.hasOwnProperty(key) && value !== undefined) {
+      if (Object.prototype.hasOwnProperty.call(props, key) && value !== undefined) {
         el.setAttribute(key, String(value));
       }
     }

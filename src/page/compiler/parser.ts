@@ -225,19 +225,16 @@ function handleMatch(
   }
   tokens.pop();
   tokens = tokens.concat(
-    [tokenBefore, matchedToken, tokenAfter].reduce(
-      (acc, curr): Token[] => {
-        if (
-          curr.content ||
-          (curr.attrs && curr.attrGet(ruleName)) ||
-          curr.type in InlineTags
-        ) {
-          acc.push(curr);
-        }
-        return acc;
-      },
-      [] as Token[],
-    ),
+    [tokenBefore, matchedToken, tokenAfter].reduce((acc, curr): Token[] => {
+      if (
+        curr.content ||
+        (curr.attrs && curr.attrGet(ruleName)) ||
+        curr.type in InlineTags
+      ) {
+        acc.push(curr);
+      }
+      return acc;
+    }, [] as Token[]),
   );
   return { pos, tokens };
 }
@@ -283,7 +280,11 @@ export function hasStartTag(
   content: string,
 ): { length: number; tag: StartTags } | null {
   const match = tagRule.exec(content);
-  if (match && match.index === 0 && tagRules.hasOwnProperty(match[0])) {
+  if (
+    match &&
+    match.index === 0 &&
+    Object.prototype.hasOwnProperty.call(tagRules, match[0])
+  ) {
     return {
       length: match[0].length,
       tag: tagRules[match[0]],
